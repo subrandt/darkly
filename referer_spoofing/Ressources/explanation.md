@@ -1,7 +1,7 @@
 # Vulnérabilité de Referer Spoofing (Falsification de Referer)
 
 ## Découverte
-Sur la page d'accueil du site, tout en bas, j'ai trouvé un lien "BornToSec" qui mène vers l'URL http://10.13.248.97/index.php?page=b7e44c7a40c5f80139f0a50f3650fb2bd8d00b0d24667c4c2ca32c88e13b758f. En explorant cette page et en inspectant son code source, j'ai trouvé des commentaires HTML cachés révélant que l'application vérifie des en-têtes HTTP spécifiques :
+Sur la page d'accueil du site, tout en bas, j'ai trouvé un lien "BornToSec" qui mène vers l'URL http://10.13.248.97/index.php?page=b7e44c7a40c5f80139f0a50f3650fb2bd8d00b0d24667c4c2ca32c88e13b758f. En explorant cette page et en inspectant son code source, on a trouvé des commentaires HTML cachés révélant que l'application vérifie des en-têtes HTTP spécifiques :
 - `Referer: https://www.nsa.gov/`
 - `User-Agent: ft_bornToSec`
 
