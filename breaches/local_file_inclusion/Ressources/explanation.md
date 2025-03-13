@@ -2,7 +2,7 @@
 
 ## Découverte
 Nous avons découvert que le paramètre "page" dans l'URL est vulnérable à une attaque de type Local File Inclusion (LFI), permettant d'accéder à des fichiers sensibles du système.
-http://10.13.248.97/index.php?page=../../../etc/passwd
+http://10.13.248.97/index.php?page=../../../../../../../etc/passwd
 
 ## Vulnérabilité
 Faille de type **"Local File Inclusion (LFI)"** où l'application inclut des fichiers fournis via des paramètres d'entrée sans validation suffisante, permettant à un attaquant d'accéder à des fichiers sensibles sur le serveur.
