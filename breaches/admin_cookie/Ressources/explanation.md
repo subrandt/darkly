@@ -18,7 +18,7 @@ Faille de type **"Insecure Cookie Handling"** où l'application détermine les d
 3. Remplacement du cookie et rafraîchissement de la page pour obtenir le flag
    ![Flag Obtained](../Ressources/screenshots/popup_flag.png)
 
-## Atténuation
+## Prévention
 - Ne pas stocker de droits d'accès dans les cookies
 - Utiliser des sessions côté serveur
 - Vérifier les permissions à chaque requête

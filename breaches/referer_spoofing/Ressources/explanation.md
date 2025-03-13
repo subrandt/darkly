@@ -21,7 +21,7 @@ headers = {
 response = requests.get('http://10.13.248.97/index.php?page=b7e44c7a40c5f80139f0a50f3650fb2bd8d00b0d24667c4c2ca32c88e13b758f', headers=headers)
 ```
 
-## Atténuation
+## Prévention
 - Ne pas se fier aux en-têtes contrôlés par le client pour les décisions de sécurité
 - Mettre en place une authentification appropriée avec des jetons de session ou des clés API
 - Utiliser une vérification côté serveur pour le contrôle d'accès

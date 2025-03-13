@@ -16,7 +16,7 @@ Faille de type **"Improper Input Validation"** où l'application n'effectue pas 
 ce qui a permis d'obtenir le flag
    ![Flag Obtained](../Ressources/screenshots/flag.png)
 
-## Atténuation
+## Prévention
 - Implémenter une validation rigoureuse côté serveur pour vérifier que les valeurs soumises correspondent aux valeurs autorisées
 - Utiliser des listes blanches pour les entrées acceptables
 - Ne jamais faire confiance aux données soumises par le client
