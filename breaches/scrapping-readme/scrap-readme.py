@@ -1,7 +1,5 @@
 from bs4 import BeautifulSoup
-import threading
 import requests
-import time
 
 def deepInFile(listOfLink, url):
     for a in listOfLink:
@@ -21,34 +19,14 @@ def deepInFile(listOfLink, url):
 
 
 def main():
-    URL_BASE = "http://10.13.248.133/.hidden/"
-    # start = time.time()
-    req = requests.get('http://10.13.248.133/.hidden/')
+    URL_BASE = "http://10.13.248.97/.hidden/"
+    req = requests.get(URL_BASE)
 
     page = BeautifulSoup(req.content, features="html.parser")
 
     listOfLink = page.find_all('a')
+    deepInFile(listOfLink, URL_BASE)
 
-    taille = len(listOfLink)
-    taille_partie = taille // 4
-
-    listes_divisees = []
-
-    for i in range(4):
-        debut = i * taille_partie
-        fin = (i + 1) * taille_partie if i < 3 else taille
-        listes_divisees.append(listOfLink[debut:fin])
-
-    threads = []
-    for i in range(4):
-        t = threading.Thread(target=deepInFile, args=(listes_divisees[i], URL_BASE))
-        threads.append(t)
-        t.start()
-    
-    for t in threads:
-        t.join()
-    # end = time.time()
-    # print(f'Time = {end - start}')
 
 if __name__ =="__main__":
     main()
