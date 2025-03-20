@@ -2,6 +2,8 @@
 
 VENV_NAME="venv"
 
+export URL_DARKLY=$1
+
 if [ ! -f "requirements.txt" ]; then
     echo "Erreur : Le fichier requirements.txt n'existe pas dans le répertoire actuel."
     exit 1

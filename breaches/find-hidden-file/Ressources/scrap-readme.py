@@ -1,5 +1,8 @@
 from bs4 import BeautifulSoup
 import requests
+import os
+
+URL = os.environ.get('URL_DARKLY')
 
 def deepInFile(listOfLink, url):
     for a in listOfLink:
@@ -19,13 +22,17 @@ def deepInFile(listOfLink, url):
 
 
 def main():
-    URL_BASE = "http://10.13.248.97/.hidden/"
-    req = requests.get(URL_BASE)
+    try:
+        URL_BASE = "http://" + URL + "/.hidden/"
+        print(URL_BASE)
+        req = requests.get(URL_BASE)
 
-    page = BeautifulSoup(req.content, features="html.parser")
+        page = BeautifulSoup(req.content, features="html.parser")
 
-    listOfLink = page.find_all('a')
-    deepInFile(listOfLink, URL_BASE)
+        listOfLink = page.find_all('a')
+        deepInFile(listOfLink, URL_BASE)
+    except Exception as e:
+        print(f"Error: {e}")        
 
 
 if __name__ =="__main__":

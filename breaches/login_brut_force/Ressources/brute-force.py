@@ -1,7 +1,10 @@
 import requests
 import time
+import os
 
-base_url = "http://10.13.248.97/"
+URL = os.environ.get('URL_DARKLY')
+
+base_url = "http://" + URL + "/"
 
 username = "root"
 

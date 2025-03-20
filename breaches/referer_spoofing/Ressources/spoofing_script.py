@@ -1,12 +1,15 @@
 import requests
 import re
+import os
+
+URL = os.environ.get('URL_DARKLY')
 
 headers = {
     'Referer': 'https://www.nsa.gov/',
     'User-Agent': 'ft_bornToSec'
 }
 
-response = requests.get('http://10.13.248.97/index.php?page=b7e44c7a40c5f80139f0a50f3650fb2bd8d00b0d24667c4c2ca32c88e13b758f', headers=headers)
+response = requests.get('http://' + URL + '/index.php?page=b7e44c7a40c5f80139f0a50f3650fb2bd8d00b0d24667c4c2ca32c88e13b758f', headers=headers)
 
 # Isolating the flag:
 flag_pattern = re.compile(r'the flag is :?[^<\n]*', re.IGNORECASE)
