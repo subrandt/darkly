@@ -1,4 +1,4 @@
-# XSS via Data URI Vulnerability
+# XSS Vulnerability
 
 ```
 Le flag ne fonctionne pas, ci-dessous recap d'une attaque xss
