@@ -15,6 +15,28 @@ The Darkly project introduces students to cybersecurity in the field of web deve
 - Discover security features that modern frameworks implement automatically
 - Learn how to secure web applications against various types of attacks
 
+## Getting Started
+
+### Prerequisites
+- VirtualBox or similar virtualization software
+- The Darkly VM ISO file
+
+### Setup Instructions
+1. **Launch the Darkly VM**:
+   - Import the Darkly VM ISO into your virtualization software
+   - Start the VM and note the IP address displayed at boot (typically 172.16.60.128)
+
+2. **Environment Setup**:
+   - Clone this repository to your local machine
+   - Set up the Python virtual environment using:
+   ```bash
+   source setup-venv.sh [url_darkly]
+   ```
+   Where `[url_darkly]` is the IP address of your Darkly VM
+
+3. **Access the vulnerable web application**:
+   - Open your browser and navigate to the IP address of the Darkly VM
+
 ## Repository Structure
 This repository is organized by vulnerability type. Each directory represents a specific security breach:
 
@@ -29,23 +51,41 @@ Repository/
 │   ├── flag
 │   └── Ressources/
 │       ├── explanation.md
-│       └── payload.js
+│       └── screenshots/
 ├── ...
 ```
 
 ## Vulnerabilities Covered
-The project explores 14 different web vulnerabilities, including but not limited to:
+The project explores various web vulnerabilities, including:
 
-1. SQL Injection
-2. Cross-Site Scripting (XSS)
-3. Cross-Site Request Forgery (CSRF)
-4. File Upload Vulnerabilities
-5. Directory Traversal
-6. Insecure Direct Object References
-7. Session Management Flaws
-8. Broken Authentication
-9. Security Misconfiguration
-10. Sensitive Data Exposure
+1. **Injection Vulnerabilities**
+   - SQL Injection
+   - Command Injection
+
+2. **Cross-Site Scripting (XSS)**
+   - Stored XSS via Form Fields
+   - Reflected XSS via Data URI
+   
+3. **Authentication & Session Management**
+   - Brute Force Login
+   - Weak Password Recovery
+   - Insecure Cookie Handling
+   - Password Hash Cracking (MD5)
+
+4. **Security Misconfiguration**
+   - Hidden Files/Directories
+   - Directory Traversal/Local File Inclusion
+   
+5. **Input Validation Flaws**
+   - Survey Form Validation Bypass
+   - File Upload Vulnerabilities
+   
+6. **HTTP Header Vulnerabilities**
+   - Referer Header Spoofing
+   - User-Agent Spoofing
+   
+7. **Social Engineering Vulnerabilities**
+   - Social Media Link Spoofing
 
 ## Learning Objectives
 By completing this project, we gain:
