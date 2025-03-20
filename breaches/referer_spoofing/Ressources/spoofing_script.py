@@ -1,10 +1,7 @@
-# Spoofing
+import requests
+import re
 
-Le lien "BornToSec" en bas de la page home, mène vers la page de l'albatros.
-Quand on "inspect" l'image, il y a un indice dans le html :
-    "You must come from : https://www.nsa.gov/" suivi de "Where does it come from?"
-
-
+headers = {
     'Referer': 'https://www.nsa.gov/',
     'User-Agent': 'ft_bornToSec'
 }
