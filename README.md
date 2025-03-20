@@ -30,9 +30,9 @@ The Darkly project introduces students to cybersecurity in the field of web deve
    - Clone this repository to your local machine
    - Set up the Python virtual environment using:
    ```bash
-   source setup-venv.sh [url_darkly]
+   source setup-venv.sh [IP_DARKLY]
    ```
-   Where `[url_darkly]` is the IP address of your Darkly VM
+   Where `[IP_DARKLY]` is the IP address of your Darkly VM
 
 3. **Access the vulnerable web application**:
    - Open your browser and navigate to the IP address of the Darkly VM
